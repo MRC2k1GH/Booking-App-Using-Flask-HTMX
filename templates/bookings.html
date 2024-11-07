@@ -1,0 +1,7 @@
+{% for booking in bookings %}
+    <tr>
+        <td>{{ booking['name'] }}</td>
+        <td>{{ booking['hour'] }}</td>
+        <td>{{ booking['reason'] }}</td>
+    </tr>
+{% endfor %}

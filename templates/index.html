@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Schedule</title>
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+</head>
+<body>
+    <h1>Book an Hour</h1>
+    <form hx-post="/book" hx-target="#response" hx-swap="innerHTML">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="hour">Hour:</label>
+        <select id="hour" name="hour">
+            <script>
+                for (let i = 0; i < 24; i++) {
+                    document.write('<option value="' + i + ':00">' + i + ':00</option>');
+                }
+            </script>
+        </select>
+        <br>
+        <label for="reason">Reason:</label>
+        <input type="text" id="reason" name="reason">
+        <br>
+        <button type="submit">Book</button>
+    </form>
+    <div id="response"></div>
+    <h2>Current Bookings</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Hour</th>
+                <th>Reason</th>
+            </tr>
+        </thead>
+        <tbody id="bookings-table-body" hx-get="/bookings" hx-trigger="load" hx-swap="innerHTML">
+        </tbody>
+    </table>
+</body>
+</html>
